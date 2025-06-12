@@ -5,53 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Email Generator</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="static/design.css">
+    <link rel="stylesheet" href="design.css">
 </head>
 <body>
-    <div class="parallax welcome-section">
-        <h1 id="typing-text">Welcome to AI Email Generator</h1>
-        <button class="explore-btn" onclick="scrollToForm()">Explore</button>
+    <header class="glass-header">
+        <div class="header-content">
+            <div class="logo-title">
+                <svg class="header-logo" width="250" height="60" viewBox="0 0 250 60">
+                    <g class="logo-group">
+                        <!-- Black square with AI text -->
+                        <rect x="0" y="0" width="60" height="60" fill="#000"/>
+                        <text x="12" y="42" fill="#fff" font-family="Poppins" font-size="35" font-weight="600">AI</text>
+                        
+                        <!-- Email Generator text - now in white -->
+                        <text x="90" y="30" fill="#fff" font-family="Poppins" font-size="25" font-weight="400">Email</text>
+                        <text x="75" y="58" fill="#fff" font-family="Poppins" font-size="25" font-weight="400">Generator</text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Container -->
+    <div class="hero-container">
+        <div class="content-wrapper">
+            <!-- Container for logo and text -->
+            <div class="logo-title-container">
+                <div class="logo-square">
+                    <span class="ai-text">AI</span>
+                </div>
+                <div class="hero-text">
+                    <p>Email</p>
+                    <p>Generator</p>
+                </div>
+            </div>
+            
+            <!-- Hero tagline -->
+            <div class="hero-tagline">
+                <h1>One Tool, Every Email: Personal, Professional, Perfected by AI.</h1>
+                <p class="subtitle">Whether you're wishing a friend happy birthday or pitching a client, generate the perfect email—instantly.</p>
+                <button class="try-btn" onclick="scrollToForm()">Try It Now</button>
+            </div>
+        </div>
     </div>
 
     <div class="email-section" id="email-section">
-        <div class="sidebar">
-            <h2>How To Use</h2>
-            <p>1. Fill in the recipient's details.</p>
-            <p>2. Enter the subject of the email.</p>
-            <p>3. Describe the purpose of the email.</p>
-            <p>4. Choose the tone and closing of the email.</p>
-            <p>5. If you don't enter the details correctly the Email Generaor can give some random content.</p>
-        </div>
+        <div class="email-container">
+            <div class="sidebar">
+                <h2>How To Use</h2>
+                <div class="sidebar-content">
+                    <p><span class="step-number">1.</span> Fill in the recipient's details.</p>
+                    <p><span class="step-number">2.</span> Enter the subject of the email.</p>
+                    <p><span class="step-number">3.</span> Describe the purpose of the email.</p>
+                    <p><span class="step-number">4.</span> Choose the tone and closing of the email.</p>
+                    <p><span class="step-number">5.</span> If you don't enter the details correctly the Email Generator can give some random content.</p>
+                </div>
+            </div>
 
-        <div class="form-container">
-            <form id="email-form">
-                <h2>📧 AI Email Generator</h2>
-                <input type="text" name="recipient_name" placeholder="Recipient's Name" required>
-                <input type="text" name="recipient_designation" placeholder="Recipient's Designation/Role">
-                <input type="text" name="email_subject" placeholder="Enter Email Subject" required>
-                <textarea name="email_purpose" placeholder="Purpose of the Email" rows="4" required></textarea>
-                <input type="text" name="call_to_action" placeholder="Prompts (CTA)">
-                <input type="text" name="sender_name" placeholder="Sender's Name" required>
-                <select name="email_tone">
-                    <option value="Formal">Formal</option>
-                    <option value="Semi-formal">Semi-formal</option>
-                    <option value="Casual">Casual</option>
-                </select>
-                <select name="email_closing">
-                    <option value="Best regards,">Best regards,</option>
-                    <option value="Sincerely,">Sincerely,</option>
-                    <option value="Thanks,">Thanks,</option>
-                    <option value="Warm regards,">Warm regards,</option>
-                </select>
-                <button type="submit">Generate Email</button>
-            </form>
+            <div class="form-container">
+                <form id="email-form">
+                    <h2>AI Email Generator</h2>
+                    <div class="form-row">
+                        <input type="text" name="recipient_name" placeholder="Recipient's Name" required>
+                        <input type="text" name="recipient_designation" placeholder="Recipient's Designation/Role">
+                    </div>
+                    <input type="text" name="email_subject" placeholder="Enter Email Subject" required>
+                    <textarea name="email_purpose" placeholder="Purpose of the Email" rows="4" required></textarea>
+                    <div class="form-row">
+                        <input type="text" name="call_to_action" placeholder="Prompts (CTA)">
+                        <input type="text" name="sender_name" placeholder="Sender's Name" required>
+                    </div>
+                    <div class="form-row">
+                        <select name="email_tone">
+                            <option value="Formal">Formal</option>
+                            <option value="Semi-formal">Semi-formal</option>
+                            <option value="Casual">Casual</option>
+                        </select>
+                        <select name="email_closing">
+                            <option value="Best regards,">Best regards,</option>
+                            <option value="Sincerely,">Sincerely,</option>
+                            <option value="Thanks,">Thanks,</option>
+                            <option value="Warm regards,">Warm regards,</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="generate-btn">Generate Email</button>
+                </form>
 
-            <!-- Text box for showing the generated email -->
-            <div class="generated-email-container">
-                <textarea id="generated-email" name="generated_email" placeholder="Generated Email will appear here..." rows="8" readonly></textarea>
-                <button class="copy-btn" onclick="copyToClipboard()">
-                    <img src="static/copy-icon-transparent.png" alt="Copy" />
-                </button>
+                <!-- Text box for showing the generated email -->
+                <div class="generated-email-container">
+                    <textarea id="generated-email" name="generated_email" placeholder="Generated Email will appear here..." rows="8" readonly></textarea>
+                    <button class="copy-btn" onclick="copyToClipboard()" title="Copy to clipboard">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -76,6 +125,12 @@
                 closing: document.querySelector('[name="email_closing"]').value
             };
 
+            // Show loading state
+            const generateBtn = document.querySelector('.generate-btn');
+            const originalText = generateBtn.textContent;
+            generateBtn.textContent = 'Generating...';
+            generateBtn.disabled = true;
+
             fetch('/generate_email', {
                 method: 'POST',
                 headers: {
@@ -86,46 +141,87 @@
             .then(response => response.json())
             .then(data => {
                 document.getElementById('generated-email').value = data.generated_email;
-                scrollToBottom(); // Scroll to the bottom after generating the email
+                scrollToBottom();
             })
-            .catch(error => console.error('Error:', error));
-        });
-
-        // Typing animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const text = "Welcome to AI Email Generator";
-            let index = 0;
-            const typingText = document.getElementById('typing-text');
-            const cursor = document.createElement('span');
-            cursor.className = 'cursor';
-            cursor.innerHTML = '|';
-            typingText.appendChild(cursor);
-
-            function type() {
-                if (index < text.length) {
-                    typingText.innerHTML = text.substring(0, index + 1) + '<span class="cursor">|</span>';
-                    index++;
-                    setTimeout(type, 100);
-                } else {
-                    cursor.style.display = 'none';
-                }
-            }
-
-            type();
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error generating email. Please try again.');
+            })
+            .finally(() => {
+                generateBtn.textContent = originalText;
+                generateBtn.disabled = false;
+            });
         });
 
         // Copy to clipboard function
         function copyToClipboard() {
             const generatedEmail = document.getElementById('generated-email');
+            if (generatedEmail.value.trim() === '') {
+                alert('No email content to copy!');
+                return;
+            }
+            
             generatedEmail.select();
-            document.execCommand('copy');
-            alert('Copied to clipboard');
+            generatedEmail.setSelectionRange(0, 99999); // For mobile devices
+            
+            try {
+                document.execCommand('copy');
+                
+                // Show feedback
+                const copyBtn = document.querySelector('.copy-btn');
+                const originalHTML = copyBtn.innerHTML;
+                copyBtn.innerHTML = '✓';
+                copyBtn.style.color = '#4CAF50';
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalHTML;
+                    copyBtn.style.color = '';
+                }, 2000);
+                
+            } catch (err) {
+                alert('Failed to copy to clipboard');
+            }
         }
 
         // Scroll to the bottom of the page
         function scrollToBottom() {
             window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
+
+        // Header hide/show functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('.glass-header');
+            const emailSection = document.querySelector('.email-section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        header.style.transform = 'translateY(-100%)';
+                        header.style.opacity = '0';
+                    } else {
+                        header.style.transform = 'translateY(0)';
+                        header.style.opacity = '1';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            observer.observe(emailSection);
+        });
+
+        // Mobile menu toggle (if needed for future enhancements)
+        function toggleMobileMenu() {
+            // Future implementation for mobile menu
+        }
+
+        // Smooth scrolling for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>
