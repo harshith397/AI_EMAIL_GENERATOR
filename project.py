@@ -1,40 +1,35 @@
-from flask import Flask, request, jsonify, render_template, send_from_directory
+from flask import Flask, request, jsonify, render_template
 import os
 from dotenv import load_dotenv
+from flask_cors import CORS
 from groq import Groq
-pip install flask-cors
 
-# Load environment variables
+# Load environment variables from .env
 load_dotenv()
 GROQ_API_KEY = os.getenv('GROQ_API_KEY')
+
+# Initialize Flask app
+app = Flask(__name__, template_folder='templates', static_folder='static')
+
+# Enable CORS for all routes
+CORS(app)
 
 # Initialize Groq client
 client = Groq(api_key=GROQ_API_KEY)
 
-# Initialize Flask app
-app = Flask(__name__)
-
-# Enable CORS for all routes
-
-CORS(app)
-
-# Add new route to serve CSS files from templates
-@app.route('/templates/<path:filename>')
-def serve_static(filename):
-    return send_from_directory('templates', filename)
-
-
+# Home route serving HTML page
 @app.route('/')
 def index():
-    return render_template('home.html')  # Ensure "home.html" is inside the "templates" folder
+    return render_template('home.html')  # Make sure home.html exists in templates/
 
-
+# API route to generate email
 @app.route('/generate_email', methods=['POST'])
 def generate_email():
-    data = request.get_json()  # Ensure we receive JSON data
+    data = request.get_json()
     if not data:
         return jsonify({"error": "Invalid request. Expected JSON data"}), 400
 
+    # Extract form data
     recipient_name = data.get('recipient_name', 'Recipient')
     designation = data.get('recipient_designation', 'Professional')
     subject = data.get('subject', 'Email Subject')
@@ -45,7 +40,7 @@ def generate_email():
     sender_name = data.get('sender_name', 'Sender')
     closing = data.get('closing', 'Best regards,')
 
-    # Construct prompt - now includes subject
+    # Prompt for LLM
     prompt = f"""
     Write a formal email to {recipient_name}, who is a {designation}.
 
@@ -61,16 +56,16 @@ Only generate the final email without any introductory statements or formatting 
     """
 
     try:
-        # Call Llama 4 Maverick model
+        # Llama 4 API call
         response = client.chat.completions.create(
             model="meta-llama/llama-4-maverick-17b-128e-instruct",
             messages=[
                 {
                     "role": "system",
                     "content": (
-                        """You are a professional email writer. Always respond with the final formatted email only.
-Do not include any descriptions, prefaces, or explanations.
-Format the email with a proper subject line, greeting, structured body, clear CTA, and signature."""
+                        "You are a professional email writer. Always respond with the final formatted email only. "
+                        "Do not include any descriptions, prefaces, or explanations. "
+                        "Format the email with a proper subject line, greeting, structured body, clear CTA, and signature."
                     )
                 },
                 {"role": "user", "content": prompt}
@@ -80,12 +75,11 @@ Format the email with a proper subject line, greeting, structured body, clear CT
         )
 
         email_text = response.choices[0].message.content
-
         return jsonify({"generated_email": email_text})
 
     except Exception as e:
         return jsonify({"error": f"Failed to generate email: {str(e)}"}), 500
 
-
+# Run Flask app
 if __name__ == '__main__':
     app.run(debug=True)
