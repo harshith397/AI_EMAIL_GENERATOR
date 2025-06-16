@@ -14,9 +14,11 @@ client = Groq(api_key=GROQ_API_KEY)
 # Initialize Flask app
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     return render_template('home.html')  # Ensure "home.html" is inside the "templates" folder
+
 
 @app.route('/generate_email', methods=['POST'])
 def generate_email():
@@ -25,7 +27,8 @@ def generate_email():
         return jsonify({"error": "Invalid request. Expected JSON data"}), 400
 
     recipient_name = data.get('recipient_name', 'Recipient')
-    designation = data.get('designation', 'Professional')
+    designation = data.get('recipient_designation', 'Professional')
+    subject = data.get('subject', 'Email Subject')
     purpose = data.get('purpose', 'No purpose provided')
     tone = data.get('tone', 'Formal')
     key_content_points = data.get('key_content_points', 'Relevant details included')
@@ -33,35 +36,47 @@ def generate_email():
     sender_name = data.get('sender_name', 'Sender')
     closing = data.get('closing', 'Best regards,')
 
-    # Construct prompt
+    # Construct prompt - now includes subject
     prompt = f"""
-    Write a {tone} email to {recipient_name}, who is a {designation}. 
-    The purpose of the email is: {purpose}
-    
-    Key details to mention:
-    {key_content_points}
-    
-    The email should include a clear Call to Action (CTA): {cta}.
-    
-    Conclude the email with: {closing}.
-    
-    The email is from: {sender_name}.
+    Write a formal email to {recipient_name}, who is a {designation}.
+
+Subject: {subject}
+Purpose: {purpose}
+Key Points:
+{key_content_points}
+Call to Action: {cta}
+Closing: {closing}
+Sender: {sender_name}
+
+Only generate the final email without any introductory statements or formatting notes.
     """
 
-    # Call Groq's Mixtral model
-    response = client.chat.completions.create(
-        model="mixtral-8x7b-32768",
-        messages=[
-            {"role": "system", "content": "You are an expert email writer."},
-            {"role": "user", "content": prompt}
-        ],
-        max_tokens=512,
-        temperature=0.7
-    )
+    try:
+        # Call Llama 4 Maverick model
+        response = client.chat.completions.create(
+            model="meta-llama/llama-4-maverick-17b-128e-instruct",
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        """You are a professional email writer. Always respond with the final formatted email only.
+Do not include any descriptions, prefaces, or explanations.
+Format the email with a proper subject line, greeting, structured body, clear CTA, and signature."""
+                    )
+                },
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=512,
+            temperature=0.7
+        )
 
-    email_text = response.choices[0].message.content
+        email_text = response.choices[0].message.content
 
-    return jsonify({"generated_email": email_text})
+        return jsonify({"generated_email": email_text})
+
+    except Exception as e:
+        return jsonify({"error": f"Failed to generate email: {str(e)}"}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
