@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_from_directory
 import os
 from dotenv import load_dotenv
 from groq import Groq
@@ -13,6 +13,11 @@ client = Groq(api_key=GROQ_API_KEY)
 
 # Initialize Flask app
 app = Flask(__name__)
+
+# Add new route to serve CSS files from templates
+@app.route('/templates/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('templates', filename)
 
 
 @app.route('/')
