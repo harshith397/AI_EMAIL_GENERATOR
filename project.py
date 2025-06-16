@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, render_template, send_from_directory
 import os
 from dotenv import load_dotenv
 from groq import Groq
-
+pip install flask-cors
 
 # Load environment variables
 load_dotenv()
@@ -13,6 +13,10 @@ client = Groq(api_key=GROQ_API_KEY)
 
 # Initialize Flask app
 app = Flask(__name__)
+
+# Enable CORS for all routes
+
+CORS(app)
 
 # Add new route to serve CSS files from templates
 @app.route('/templates/<path:filename>')

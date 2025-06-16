@@ -132,13 +132,13 @@
             generateBtn.textContent = 'Generating...';
             generateBtn.disabled = true;
 
-            fetch('/generate_email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
+            fetch("https://email-generator-backend.onrender.com/generate_email", {
+                    method: "POST",
+                    headers: {
+                    "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                })
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
