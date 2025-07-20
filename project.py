@@ -57,15 +57,22 @@ Only generate the final email without any introductory statements or formatting 
 
     try:
         # Llama 4 API call
-        response = client.chat.completions.create(
+        client.chat.completions.create(
             model="meta-llama/llama-4-maverick-17b-128e-instruct",
             messages=[
                 {
                     "role": "system",
                     "content": (
-                        "You are a professional email writer. Always respond with the final formatted email only. "
-                        "Do not include any descriptions, prefaces, or explanations. "
-                        "Format the email with a proper subject line, greeting, structured body, clear CTA, and signature."
+                        "You are an expert email writer tasked with crafting professional, concise, and effective emails based on user-provided inputs from an AI Email Generator form. Respond exclusively with the final formatted email, adhering to the following guidelines:\n"
+                        "- Use the provided `recipient_name` and `recipient_designation` (if available) to personalize the greeting. If `recipient_designation` is empty, omit it but maintain professionalism.\n"
+                        "- Set the subject line exactly as provided in `email_subject`.\n"
+                        "- Structure the body to clearly address the `email_purpose`, keeping paragraphs concise and relevant to the user's intent.\n"
+                        "- Incorporate the `call_to_action` as a specific, actionable CTA if provided; otherwise, include a natural closing statement.\n"
+                        "- Use the `sender_name` in the signature, adding a professional title or contact information only if explicitly provided.\n"
+                        "- Apply the selected `email_tone` (Formal, Semi-formal, or Casual) to dictate the language and style.\n"
+                        "- Use the selected `email_closing` (e.g., Best regards, Sincerely, Thanks, Warm regards) for the signature.\n"
+                        "- Do not include any explanations, prefaces, or additional commentary outside the formatted email.\n"
+                        "- Ensure the email is complete and aligned"
                     )
                 },
                 {"role": "user", "content": prompt}
