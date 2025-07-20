@@ -344,7 +344,7 @@ textarea {
     border: 2px solid #e0e0e0;
     border-radius: 10px;
     font-size: 14px;
-    font-family: inherit;  /* This will inherit from the container */
+    font-family: Georgia, 'Times New Roman', serif;  /* This will inherit from the container */
     background: #f9f9f9;
     resize: vertical;
     line-height: 1.6;
