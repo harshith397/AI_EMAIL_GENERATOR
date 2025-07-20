@@ -57,7 +57,7 @@ Only generate the final email without any introductory statements or formatting 
 
     try:
         # Llama 4 API call
-        client.chat.completions.create(
+        response = client.chat.completions.create(
             model="meta-llama/llama-4-maverick-17b-128e-instruct",
             messages=[
                 {
