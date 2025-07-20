@@ -1,181 +1,8 @@
-/* Global Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth;
-}
-
-body {
-    overflow-x: hidden;
-    background: #f4f4f4;
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
-}
-
-/* Glassmorphism Header */
-.glass-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 70px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 1000;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.header-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.logo-title {
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-
-.header-logo {
-    height: 40px;
-    width: auto;
-    max-width: 200px;
-}
-
-/* Hero Container Styles */
-.hero-container {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 2rem;
-    background: linear-gradient(90deg, #3B0764 0%, #B32C76 100%);
-    position: relative;
-}
-
-.content-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 1200px;
-    padding: 2rem;
-    text-align: center;
-    margin-top: 4rem;
-}
-
-.logo-title-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
-
-.logo-square {
-    width: clamp(100px, 15vw, 120px);
-    height: clamp(100px, 15vw, 120px);
-    background-color: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateY(50vh);
-    animation: slideUpCloser 0.6s ease-out forwards;
-    flex-shrink: 0;
-}
-
-.logo-square .ai-text {
-    color: #FFF;
-    font-weight: bold;
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    line-height: 1;
-    transform: translateY(-150%);
-    opacity: 0;
-    animation: dropAI 0.5s ease-in 0.7s forwards;
-}
-
-.hero-text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    transform: translateY(50vh);
-    animation: slideUpCloser 0.6s ease-out 0.1s forwards;
-}
-
-.hero-text p {
-    font-size: clamp(1.8rem, 6vw, 3.5rem);
-    font-weight: 400;
-    line-height: 0.9;
-    color: #fff;
-    opacity: 0;
-    margin: 0;
-}
-
-.hero-text p:first-child {
-    animation: slideUpText 0.6s ease-out 0.1s forwards;
-}
-
-.hero-text p:last-child {
-    animation: slideUpText 0.6s ease-out 0.4s forwards;
-}
-
-.hero-tagline {
-    margin-top: 2rem;
-    text-align: center;
-    opacity: 0;
-    animation: fadeIn 0.8s ease-out 1.2s forwards;
-    max-width: 600px;
-    width: 100%;
-}
-
-.hero-tagline h1 {
-    color: #fff;
-    font-size: clamp(1.5rem, 4vw, 1.8rem);
-    font-weight: 600;
-    margin-bottom: 1rem;
-    line-height: 1.3;
-}
-
-.hero-tagline .subtitle {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: clamp(0.9rem, 2.5vw, 1rem);
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
-}
-
-.try-btn {
-    background: #000;
-    color: #fff;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 25px;
-    font-size: clamp(0.9rem, 2.5vw, 1rem);
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 120px;
-}
-
-.try-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Email Generator Section */
+/* Email Generator Section - Updated with Georgia font */
 .email-section {
     padding: 60px 20px;
     background-color: rgba(59, 7, 100, 0.05);
+    font-family: Georgia, 'Times New Roman', serif; /* Added Georgia font family */
 }
 
 .email-container {
@@ -188,6 +15,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     padding: 30px;
     min-height: 600px;
+    font-family: inherit; /* Inherit Georgia font from parent */
 }
 
 .sidebar {
@@ -200,6 +28,7 @@ body {
     height: fit-content;
     position: sticky;
     top: 100px;
+    font-family: inherit; /* Inherit Georgia font */
 }
 
 .sidebar h2 {
@@ -207,10 +36,12 @@ body {
     margin-bottom: 20px;
     color: rgb(0, 0, 0);
     text-align: center;
+    font-family: inherit; /* Inherit Georgia font */
 }
 
 .sidebar-content {
     padding: 15px;
+    font-family: inherit; /* Inherit Georgia font */
 }
 
 .sidebar-content p {
@@ -224,6 +55,7 @@ body {
     border-radius: 8px;
     border-left: 3px solid #3B0764;
     transition: all 0.3s ease;
+    font-family: inherit; /* Inherit Georgia font */
 }
 
 .sidebar-content p:hover {
@@ -243,6 +75,7 @@ body {
     background: linear-gradient(135deg, rgba(59, 7, 100, 0.1), rgba(179, 44, 118, 0.1));
     padding: 2px 8px;
     border-radius: 4px;
+    font-family: inherit; /* Inherit Georgia font */
 }
 
 .form-container {
@@ -253,6 +86,7 @@ body {
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    font-family: inherit; /* Inherit Georgia font */
 }
 
 .form-container h2 {
@@ -260,6 +94,7 @@ body {
     margin-bottom: 30px;
     color: rgb(0, 0, 0);
     font-size: 1.8rem;
+    font-family: inherit; /* Inherit Georgia font */
 }
 
 form {
@@ -267,6 +102,7 @@ form {
     flex-direction: column;
     gap: 15px;
     margin-bottom: 30px;
+    font-family: inherit; /* Inherit Georgia font */
 }
 
 .form-row {
@@ -278,13 +114,14 @@ form {
     flex: 1;
 }
 
+/* Updated input, select, textarea to use Georgia font */
 input, select, textarea {
     width: 100%;
     padding: 12px 15px;
     border: 2px solid #e0e0e0;
     border-radius: 10px;
     font-size: 16px;
-    font-family: 'Poppins', sans-serif;
+    font-family: Georgia, 'Times New Roman', serif; /* Changed from Poppins to Georgia */
     transition: all 0.3s ease;
     background-color: #fafafa;
 }
@@ -316,6 +153,7 @@ textarea {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-top: 10px;
+    font-family: Georgia, 'Times New Roman', serif; /* Changed to Georgia font */
 }
 
 .generate-btn:hover:not(:disabled) {
@@ -333,7 +171,7 @@ textarea {
 .generated-email-container {
     position: relative;
     width: 100%;
-    font-family: 'Source Code Pro', 'Monaco', 'Consolas', monospace;
+    font-family: Georgia, 'Times New Roman', serif; /* Ensure Georgia font for container */
 }
 
 #generated-email {
@@ -344,7 +182,7 @@ textarea {
     border: 2px solid #e0e0e0;
     border-radius: 10px;
     font-size: 14px;
-    font-family: Georgia, 'Times New Roman', serif;  /* This will inherit from the container */
+    font-family: Georgia, 'Times New Roman', serif; /* Keep Georgia font for email content */
     background: #f9f9f9;
     resize: vertical;
     line-height: 1.6;
@@ -362,6 +200,7 @@ textarea {
     cursor: pointer;
     transition: all 0.3s ease;
     color: #666;
+    font-family: Georgia, 'Times New Roman', serif; /* Added Georgia font */
 }
 
 .copy-btn:hover {
@@ -369,362 +208,4 @@ textarea {
     color: #333;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transform: translateY(-1px);
-}
-
-/* Animation Keyframes */
-@keyframes slideUpCloser {
-    0% {
-        transform: translateY(50vh);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@keyframes dropAI {
-    0% {
-        transform: translateY(-150%);
-        opacity: 0;
-    }
-    60% {
-        transform: translateY(10%);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideUpText {
-    0% {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Responsive Design */
-
-/* Large Desktop */
-@media (min-width: 1400px) {
-    .email-container {
-        max-width: 1400px;
-    }
-    
-    .sidebar {
-        flex: 0 0 350px;
-    }
-}
-
-/* Desktop */
-@media (max-width: 1199px) {
-    .email-container {
-        padding: 25px;
-    }
-    
-    .sidebar {
-        flex: 0 0 280px;
-    }
-}
-
-/* Tablet */
-@media (max-width: 991px) {
-    .hero-container {
-        padding: 0 1.5rem;
-    }
-    
-    .content-wrapper {
-        padding: 1.5rem;
-    }
-    
-    .logo-title-container {
-        gap: 1.5rem;
-    }
-    
-    .email-container {
-        flex-direction: column;
-        padding: 20px;
-        gap: 1.5rem;
-    }
-    
-    .sidebar {
-        flex: none;
-        width: 100%;
-        position: static;
-        order: 2;
-    }
-    
-    .form-container {
-        order: 1;
-    }
-    
-    .form-row {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .form-row > * {
-        flex: none;
-    }
-}
-
-/* Mobile Large */
-@media (max-width: 767px) {
-    .glass-header {
-        height: 60px;
-    }
-    
-    .header-logo {
-        height: 35px;
-        max-width: 180px;
-    }
-    
-    .hero-container {
-        padding: 0 1rem;
-        min-height: 100vh;
-    }
-    
-    .content-wrapper {
-        padding: 1rem;
-    }
-    
-    .logo-title-container {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-    
-    .hero-text {
-        align-items: center;
-    }
-    
-    .email-section {
-        padding: 40px 15px;
-    }
-    
-    .email-container {
-        padding: 15px;
-        border-radius: 15px;
-    }
-    
-    .sidebar {
-        padding: 15px;
-        border-radius: 10px;
-    }
-    
-    .sidebar h2 {
-        font-size: 1.3rem;
-    }
-    
-    .form-container {
-        padding: 20px;
-    }
-    
-    .form-container h2 {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-    }
-    
-    input, select, textarea {
-        padding: 10px 12px;
-        font-size: 15px;
-    }
-    
-    .generate-btn {
-        padding: 12px 25px;
-        font-size: 16px;
-    }
-    
-    #generated-email {
-        font-size: 13px;
-        min-height: 150px;
-    }
-}
-
-/* Mobile Medium */
-@media (max-width: 575px) {
-    .hero-container {
-        padding: 0 0.5rem;
-    }
-    
-    .content-wrapper {
-        padding: 0.5rem;
-    }
-    
-    .hero-tagline {
-        margin-top: 1.5rem;
-    }
-    
-    .hero-tagline h1 {
-        margin-bottom: 0.8rem;
-    }
-    
-    .hero-tagline .subtitle {
-        margin-bottom: 1.2rem;
-    }
-    
-    .try-btn {
-        padding: 10px 20px;
-    }
-    
-    .email-section {
-        padding: 30px 10px;
-    }
-    
-    .email-container {
-        padding: 10px;
-    }
-    
-    .sidebar {
-        padding: 12px;
-    }
-    
-    .sidebar-content p {
-        padding: 8px;
-        font-size: 0.85rem;
-        margin-bottom: 12px;
-    }
-    
-    .form-container {
-        padding: 15px;
-    }
-    
-    input, select, textarea {
-        padding: 8px 10px;
-        font-size: 14px;
-    }
-    
-    .generate-btn {
-        padding: 10px 20px;
-        font-size: 15px;
-    }
-}
-
-/* Mobile Small */
-@media (max-width: 374px) {
-    .logo-square {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .logo-square .ai-text {
-        font-size: 1.8rem;
-    }
-    
-    .hero-text p {
-        font-size: 1.5rem;
-    }
-    
-    .hero-tagline h1 {
-        font-size: 1.2rem;
-    }
-    
-    .hero-tagline .subtitle {
-        font-size: 0.85rem;
-    }
-    
-    .try-btn {
-        padding: 8px 16px;
-        font-size: 0.9rem;
-        min-width: 100px;
-    }
-    
-    .sidebar-content p {
-        font-size: 0.8rem;
-        padding: 6px;
-    }
-    
-    .form-container h2 {
-        font-size: 1.3rem;
-    }
-    
-    input, select, textarea {
-        font-size: 13px;
-    }
-    
-    .generate-btn {
-        font-size: 14px;
-    }
-}
-
-/* Landscape orientation fixes for mobile */
-@media (max-height: 500px) and (orientation: landscape) {
-    .hero-container {
-        min-height: 100vh;
-        padding: 1rem;
-    }
-    
-    .content-wrapper {
-        justify-content: center;
-        min-height: 100vh;
-        margin-top: 2rem;
-    }
-    
-    .logo-title-container {
-        margin-bottom: 1rem;
-    }
-    
-    .hero-tagline {
-        margin-top: 1rem;
-    }
-    
-    .logo-square {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .logo-square .ai-text {
-        font-size: 1.5rem;
-    }
-    
-    .hero-text p {
-        font-size: 1.3rem;
-    }
-}
-
-/* High DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .copy-btn svg {
-        width: 22px;
-        height: 22px;
-    }
-}
-
-/* Print styles */
-@media print {
-    .glass-header,
-    .try-btn,
-    .copy-btn,
-    .generate-btn {
-        display: none;
-    }
-    
-    .hero-container {
-        background: #fff;
-        color: #000;
-    }
-    
-    .email-section {
-        background: #fff;
-    }
-    
-    .sidebar {
-        box-shadow: none;
-        border: 1px solid #ddd;
-    }
 }
